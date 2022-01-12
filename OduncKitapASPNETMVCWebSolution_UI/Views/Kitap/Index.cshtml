@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<br />
+@{
+    //ViewBag.HataMesaji isimli değişken dolu ise hata olmuştur!
+    if (!String.IsNullOrEmpty(ViewBag.HataMesaji))
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.HataMesaji</div>
+        <br />
+    }
+    if (ViewBag.KitapListCount == 0)
+    {
+        <div class="alert alert-warning" role="alert">Kitaplar tablosunda kayıt bulunmamaktadır!</div>
+        <br />
+    }
+
+    @Html.ActionLink("YENİ KİTAP EKLE", "Ekle", "Kitap", null, new { @class = "btn btn-sm btn-success", @style = "margin:5px" });
+    if (ViewBag.KitapListCount > 0)
+    {
+        int siraNo = 0;
+        <table class="table table-hover">
+            <tr>
+                <th>Sıra No</th>
+                <th>Kitap Adı</th>
+                <th>Kayıt Tarihi</th>
+                <th>İşlemler</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+
+            }
+        </table>
+
+    }
+}
+
