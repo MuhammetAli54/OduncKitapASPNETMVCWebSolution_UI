@@ -28,6 +28,7 @@ namespace OduncKitapASPNETMVCWebSolution_BLL
         public int SayfaSayisi { get; set; }
         public int StokAdeti { get; set; }
         public bool SilindiMi { get; set; }
+        public string ResimLink { get; set; }
     
         public virtual Turler Turler { get; set; }
         public virtual Yazarlar Yazarlar { get; set; }
