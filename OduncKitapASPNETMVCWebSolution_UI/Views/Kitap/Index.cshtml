@@ -39,21 +39,33 @@
                         <th data-defaultsign="date" style="cursor:pointer">Kayıt Tarihi &darr;&uarr;</th>
                         <th>İşlemler</th>
                     </tr>
-                </thead>                @foreach (var item in Model)
+                </thead>
+                @foreach (var item in Model)
                 {
-            <tr>
-                <td>@(siraNo += 1)</td>
-                <td><img src="@item.ResimLink" style="width:65px" /></td>
-                <td class="align-middle">@item.KitapAdi</td>
-                <td class="align-middle">@item.Turler.TurAdi</td>
-                <td class="align-middle">@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
-                <td class="align-middle">@item.KayitTarihi.ToString("dd MMM yyyy")</td>
-                <td>
-                    @Html.ActionLink("Düzenle", "Duzenle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })
+                    <tr>
+                        <td>@(siraNo += 1)</td>
 
-                    @Html.ActionLink("Sil", "Sil", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" })
-                </td>
-            </tr>
+                        <td>
+                            @if (item.ResimLink == null)
+                            {
+                                <img src="~/BookImages/defaultbook.jpg" style="width:65px" />
+                            }
+                            else
+                            {
+                                <img src="@item.ResimLink" style="width:65px" />
+                            }
+
+                        </td>
+                        <td class="align-middle">@item.KitapAdi</td>
+                        <td class="align-middle">@item.Turler.TurAdi</td>
+                        <td class="align-middle">@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
+                        <td class="align-middle">@item.KayitTarihi.ToString("dd MMM yyyy")</td>
+                        <td>
+                            @Html.ActionLink("Düzenle", "Duzenle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })
+
+                            @Html.ActionLink("Sil", "Sil", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" })
+                        </td>
+                    </tr>
                 }
             </table>
             <br />

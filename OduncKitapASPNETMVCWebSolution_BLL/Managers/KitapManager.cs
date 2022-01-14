@@ -15,8 +15,7 @@ namespace OduncKitapASPNETMVCWebSolution_BLL.Managers
             try
             {
                 List<Kitaplar> kitaplar = new List<Kitaplar>();
-                //TODO: page işlemi eklenecek
-                kitaplar = dbcontext.Kitaplar.Where(x => !x.SilindiMi && x.StokAdeti > 0).ToList();
+                kitaplar = dbcontext.Kitaplar.Where(x => !x.SilindiMi && x.StokAdeti > 0).OrderByDescending(x=> x.Id).ToList();
                 return kitaplar;
             }
             catch (Exception ex)
