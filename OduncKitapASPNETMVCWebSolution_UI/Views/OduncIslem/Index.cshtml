@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<br />
+@{
+    //ViewBag.HataMesaji isimli değişken dolu ise hata olmuştur!
+    if (!String.IsNullOrEmpty(ViewBag.HataMesaji))
+    {
+        <div class="alert alert-danger" role="alert">@ViewBag.HataMesaji</div>
+        <br />
+    }
+    @Html.ActionLink("YENİ ÖDÜNÇ İŞLEM", "Ekle", "OduncIslem", null, new { @class = "btn btn-sm btn-primary", @style = "margin:5px" });
+}
+
+
+

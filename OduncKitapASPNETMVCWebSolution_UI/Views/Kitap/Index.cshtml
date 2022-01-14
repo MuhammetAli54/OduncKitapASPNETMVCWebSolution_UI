@@ -23,39 +23,42 @@
     if (ViewBag.KitapListCount > 0)
     {
         int siraNo = 0;
-        if (ViewBag.Suan>1)
+        if (ViewBag.Suan > 1)
         {
-            siraNo += (ViewBag.Suan-1) * ViewBag.PageSize;
+            siraNo += (ViewBag.Suan - 1) * ViewBag.PageSize;
         }
         {
-            <table class="table table-hover">
-                <tr>
-                    <th>Sıra No</th>
-                    <th>Kitap Adı</th>
-                    <th>Kayıt Tarihi</th>
-                    <th>Tür</th>
-                    <th>Yazar</th>
-                    <th>İşlemler</th>
-                </tr>
-                @foreach (var item in Model)
-                {
+            <table class="table table-hover sortable">
+                <thead>
                     <tr>
-                        <td>@(siraNo += 1)</td>
-                        <td>@item.KitapAdi</td>
-                        <td>@item.KayitTarihi.ToShortDateString()</td>
-                        <td>@item.Turler.TurAdi</td>
-                        <td>@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
-                        <td>
-                            @Html.ActionLink("Düzenle", "Duzenle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })
-
-                            @Html.ActionLink("Sil", "Sil", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" })
-                        </td>
+                        <th data-defaultsign="_19" style="cursor: pointer">Sıra No &darr;&uarr;</th>
+                        <th>Resim</th>
+                        <th data-defaultsign="AZ" style="cursor:pointer">Kitap Adı &darr;&uarr;</th>
+                        <th data-defaultsign="AZ" style="cursor:pointer">Tür &darr;&uarr;</th>
+                        <th data-defaultsign="AZ" style="cursor:pointer">Yazar &darr;&uarr;</th>
+                        <th data-defaultsign="date" style="cursor:pointer">Kayıt Tarihi &darr;&uarr;</th>
+                        <th>İşlemler</th>
                     </tr>
+                </thead>                @foreach (var item in Model)
+                {
+            <tr>
+                <td>@(siraNo += 1)</td>
+                <td><img src="@item.ResimLink" style="width:65px" /></td>
+                <td class="align-middle">@item.KitapAdi</td>
+                <td class="align-middle">@item.Turler.TurAdi</td>
+                <td class="align-middle">@item.Yazarlar.YazarAdi  @item.Yazarlar.YazarSoyadi</td>
+                <td class="align-middle">@item.KayitTarihi.ToString("dd MMM yyyy")</td>
+                <td>
+                    @Html.ActionLink("Düzenle", "Duzenle", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-warning", @style = "margin-right:3px" })
+
+                    @Html.ActionLink("Sil", "Sil", "Kitap", new { id = item.Id }, new { @class = "btn btn-sm btn-danger", @style = "margin-right:3px" })
+                </td>
+            </tr>
                 }
             </table>
             <br />
             <div class="row">
-                <div class="text-center">
+                <div class="text-center col-4 offset-4">
                     <ul class="pagination">
                         <li>
                             <a href="@Url.Action("Index", "Kitap", new { page = ViewBag.Suan - 1 })" id="pageprevious">&laquo;</a>
@@ -73,9 +76,9 @@
                     </ul>
                 </div>
             </div>
-            }
         }
     }
+}
 
 @section scripts{
     <script>
@@ -89,5 +92,5 @@
 
         }
     </script>
-    }
+}
 
